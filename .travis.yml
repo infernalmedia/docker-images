@@ -1,0 +1,28 @@
+
+sudo: false
+
+script: ./test-build.sh $IMAGE_TYPE $VERSION
+
+language: generic
+
+services:
+    - docker
+
+stages:
+  - Test
+  - Build
+
+jobs:
+  include:
+    - stage: Build
+      env:
+        - IMAGE_TYPE: "php"
+        - VERSION: 5
+    - stage: Build
+      env:
+        - IMAGE_TYPE: "php"
+        - VERSION: 7
+    - stage: Build
+      env:
+        - IMAGE_TYPE: "node"
+        - VERSION: "9-chromium"
