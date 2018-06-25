@@ -5,4 +5,5 @@ RUN apt-get update \
         chromium \
         libgtk-3-0 \
         libatk-bridge2.0-0 \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
