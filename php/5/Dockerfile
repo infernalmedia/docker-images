@@ -13,6 +13,7 @@ RUN apt-get update \
     && curl --silent --show-error https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer
 RUN docker-php-ext-install \
+    bcmath \
     exif \
     gd \
     mysqli \

@@ -15,6 +15,7 @@ RUN apt-get update \
 RUN docker-php-ext-install \
     exif \
     gd \
+    bcmath \
     mysqli \
     pdo \
     pdo_mysql \ 
