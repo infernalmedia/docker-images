@@ -1,13 +1,14 @@
-FROM php:7.3.11-cli
+FROM php:7.4.11-cli
 
 RUN pecl install xdebug && docker-php-ext-enable xdebug
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
+RUN apt-get update && \ 
+    apt-get install -y --no-install-recommends \
         git \
         zip \
         unzip \
-	libpng-dev \
-	libzip-dev \
+	    libpng-dev \
+	    libzip-dev \
+        libmagickwand-dev \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean \
     && curl --silent --show-error https://getcomposer.org/installer | php \
@@ -20,3 +21,5 @@ RUN docker-php-ext-install \
     pdo \
     pdo_mysql \ 
     zip
+
+RUN pecl install imagick && docker-php-ext-enable imagick
