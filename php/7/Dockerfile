@@ -1,4 +1,4 @@
-FROM php:7.4.11-cli
+FROM php:7.4.16-cli
 
 RUN pecl install xdebug && docker-php-ext-enable xdebug
 RUN apt-get update && \ 
