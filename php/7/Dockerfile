@@ -9,17 +9,21 @@ RUN apt-get update && \
 	    libpng-dev \
 	    libzip-dev \
         libmagickwand-dev \
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean \
     && curl --silent --show-error https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer
-RUN docker-php-ext-install \
-    exif \
-    gd \
-    bcmath \
-    mysqli \
-    pdo \
-    pdo_mysql \ 
-    zip
+
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) \
+        exif \
+        gd \
+        bcmath \
+        mysqli \
+        pdo \
+        pdo_mysql \ 
+        zip
 
 RUN pecl install imagick && docker-php-ext-enable imagick
